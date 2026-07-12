@@ -11,3 +11,4 @@ RUN apt-get update && apt-get install -y \
 
 COPY . . 
 RUN chmod +x health-check.sh
+ENTRYPOINT [ "./health-check.sh" ]
