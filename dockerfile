@@ -8,3 +8,5 @@ procps \
 iputils-ping \
 iproute2 \
 bash && rm -rf /var/lib/apt/lists/*
+
+COPY . . 
