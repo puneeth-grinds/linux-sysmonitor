@@ -1,7 +1,7 @@
 FROM debian:bookworm-slim
 
 
-WORKDIR /app
+WORKDIR /app/linux-sysmonitor
 
 RUN apt-get update && apt-get install -y \
     procps \
