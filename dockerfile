@@ -8,3 +8,4 @@ RUN chmod +x health-check.sh
 
 FROM debian:bookworm-slim
 
+WORKDIR /app
