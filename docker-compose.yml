@@ -1,6 +1,6 @@
 volumes:
   sysmonitor_logs:
-  
+
 services:
   sysmonitor:
     build: 
@@ -8,4 +8,5 @@ services:
     image: linux-sysmonitor:v2
     volumes:
       - sysmonitor_logs:/app/logs
-    
+    environment:
+      - LOG_LEVEL=INFO
