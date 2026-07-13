@@ -10,3 +10,5 @@ services:
       - sysmonitor_logs:/app/logs
     environment:
       - LOG_LEVEL=INFO
+      - CHECK_INTERVAL: 60
+    restart: unless-stopped
