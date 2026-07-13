@@ -1,8 +1,8 @@
 # NOTE:
-# linux-sysmonitor is a Bash application, so there are no compiled build artifacts.
-# This multi-stage build demonstrates the builder/runtime pattern.
-# For compiled applications (e.g., Go), the builder would compile the application,
-# and the runtime would copy only the compiled binary, resulting in a much smaller image.
+# linux-sysmonitor is a Bash-based application, so there are no compiled build artifacts.
+# This multi-stage build demonstrates the builder/runtime pattern. The builder prepares
+# the application, while the runtime contains only the files and dependencies required
+# to execute the script.
 
 FROM debian:bookworm-slim AS builder
 
