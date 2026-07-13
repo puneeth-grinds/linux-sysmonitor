@@ -9,3 +9,5 @@ RUN chmod +x health-check.sh
 FROM debian:bookworm-slim
 
 WORKDIR /app
+
+COPY --from=builder /app/health-check.sh .
