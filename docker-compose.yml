@@ -3,5 +3,6 @@ services:
     build: 
       context: .
     image: linux-sysmonitor:v2
-    
+    volumes:
+      - sysmonitor_logs:/app/logs
     
