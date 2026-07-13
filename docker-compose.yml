@@ -2,4 +2,6 @@ services:
   sysmonitor:
     build: 
       context: .
+    image: linux-sysmonitor:v2
+    
     
