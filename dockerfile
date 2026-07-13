@@ -17,4 +17,4 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     iproute2 \
     bash && rm -rf /var/lib/apt/lists/*
- 
+ENTRYPOINT [ "./health-check.sh" ]
