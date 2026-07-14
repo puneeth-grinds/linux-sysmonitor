@@ -30,6 +30,8 @@ RUN useradd --system \
     --shell /usr/sbin/nologin \
     appuser && \
     chown -R appuser:appuser /app
-    
+
+USER appuser
+
 ENTRYPOINT [ "./health-check.sh" ]
 
