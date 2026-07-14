@@ -4,7 +4,7 @@
 # the application, while the runtime contains only the files and dependencies required
 # to execute the script.
 
-FROM debian:bookworm-slim AS builder
+FROM debian:12.11-slim AS builder
 
 
 WORKDIR /app
@@ -12,7 +12,7 @@ WORKDIR /app
 COPY linux-sysmonitor/ . 
 RUN chmod +x health-check.sh
 
-FROM debian:bookworm-slim
+FROM debian:12.11-slim
 
 WORKDIR /app
 
