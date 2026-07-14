@@ -14,4 +14,4 @@ services:
     # restart: unless-stopped 
     # Enable this after health-check.sh is converted to a long-running monitoring service.
   webserver:
-    image: ngnix:alpine
+    image: nginx:alpine
