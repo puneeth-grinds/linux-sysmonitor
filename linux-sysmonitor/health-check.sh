@@ -6,7 +6,7 @@
 
 set -uo pipefail
 LOGFILE="logs/$(date +"%Y-%m-%d-%H-%M").log"
-
+TARGET_HOST="${TARGET_HOST:-8.8.8.8}"
 
 if [ -d logs ]; then
     :
@@ -91,7 +91,7 @@ check_top_processes() {
 check_top_processes
 
 check_network () {
-    NETWORK_CHECK=$(ping -c 4 8.8.8.8)
+    NETWORK_CHECK=$(ping -c 4 "$TARGET_HOST")
     PING_STATUS=$?
     PING_LATENCY=$(echo "$NETWORK_CHECK"| grep "rtt" | awk '{print $4}' | awk -F'/' '{print $2}')
     if [ $PING_STATUS -eq 0 ] ; then
