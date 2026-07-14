@@ -11,4 +11,5 @@ services:
     environment:
       - LOG_LEVEL=INFO
       - CHECK_INTERVAL=60
-    restart: unless-stopped
+    # restart: unless-stopped 
+    # Enable this after health-check.sh is converted to a long-running monitoring service.
