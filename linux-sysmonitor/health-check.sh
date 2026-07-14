@@ -100,7 +100,7 @@ check_network () {
         write_log "CRITICAL" "No network connectivity"
     fi
 }
-#check_network
+check_network
 
 check_ports (){
     PORTS=$(ss -tlnp | awk '{print $4}'| awk -F':' '{print $2}' | paste -sd ' ' -)
