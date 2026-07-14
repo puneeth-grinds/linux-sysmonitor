@@ -27,7 +27,7 @@ RUN apt-get update && \
 
 RUN useradd --system \
     --create-home \
-    --shell /var/sbin/nologin \
+    --shell /usr/sbin/nologin \
     appuser && \
     chown -R appuser:appuser /app
     
