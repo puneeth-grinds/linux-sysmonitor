@@ -24,5 +24,12 @@ RUN apt-get update && \
     iputils-ping \
     iproute2 \
     bash && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --system \
+    --create-home \
+    --shell /var/sbin/nologin \
+    appuser && \
+    chown -R appuser:appuser /app
+    
 ENTRYPOINT [ "./health-check.sh" ]
 
