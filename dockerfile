@@ -18,7 +18,8 @@ WORKDIR /app
 
 COPY --from=builder /app/health-check.sh .
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends\
     procps \
     iputils-ping \
     iproute2 \
