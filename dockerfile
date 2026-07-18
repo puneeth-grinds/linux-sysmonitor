@@ -4,7 +4,7 @@
 # the application, while the runtime contains only the files and dependencies required
 # to execute the script.
 
-FROM debian:bookworm-slim AS builder
+FROM debian:12.11-slim AS builder
 
 
 WORKDIR /app
@@ -12,16 +12,26 @@ WORKDIR /app
 COPY linux-sysmonitor/ . 
 RUN chmod +x health-check.sh
 
-FROM debian:bookworm-slim
+FROM debian:12.11-slim
 
 WORKDIR /app
 
 COPY --from=builder /app/health-check.sh .
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends\
     procps \
     iputils-ping \
     iproute2 \
     bash && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --system \
+    --create-home \
+    --shell /usr/sbin/nologin \
+    appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
 ENTRYPOINT [ "./health-check.sh" ]
 
