@@ -128,6 +128,22 @@ chmod +x health-check.sh
 chmod +x analyse.sh
 ```
 
+## Build the Docker Image
+
+From the repository root, build the container image with:
+
+```bash
+docker build -t linux-sysmonitor:latest .
+```
+
+## Run the Docker Container
+
+Run the health check inside the container and persist logs to the local `logs` directory:
+
+```bash
+docker run --rm -v "$PWD/logs:/app/logs" linux-sysmonitor:latest
+```
+
 ---
 
 # 🚦 Usage

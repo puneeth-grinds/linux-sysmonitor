@@ -19,6 +19,9 @@ WORKDIR /app
 
 COPY --from=builder /app/health-check.sh .
 
+
+WORKDIR /app
+
 RUN apt-get update && apt-get install -y \
     procps \
     iputils-ping \
