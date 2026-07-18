@@ -1,3 +1,4 @@
+FROM debian:bookworm-slim
 # NOTE:
 # linux-sysmonitor is a Bash-based application, so there are no compiled build artifacts.
 # This multi-stage build demonstrates the builder/runtime pattern. The builder prepares
@@ -24,4 +25,3 @@ RUN apt-get update && apt-get install -y \
     iproute2 \
     bash && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT [ "./health-check.sh" ]
-
