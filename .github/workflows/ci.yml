@@ -32,6 +32,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: health-report
-          upload-path: health-report-*.txt
+          path: health-report-*.txt
           retention-days: 7
   
