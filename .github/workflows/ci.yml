@@ -24,9 +24,9 @@ jobs:
     steps:
       - name: fetch repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
-        
+
       - name: execute health-check.sh
-        run: bash linux-sysmonitor/health-check.sh
+        run: bash linux-sysmonitor/health-check.sh >  health-report-$(date +%Y%m%d-%H%M%S).txt
       
 
 
