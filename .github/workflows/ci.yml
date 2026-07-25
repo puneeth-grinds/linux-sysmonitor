@@ -1,3 +1,8 @@
 name: CI Pipeline
+
 on: 
   [push,pull_request]
+
+jobs:
+  runs-on: ubuntu-latest
+  
