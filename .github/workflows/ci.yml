@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: fetch repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960
 
       - name: install shell-check
         run: sudo apt install shellcheck
