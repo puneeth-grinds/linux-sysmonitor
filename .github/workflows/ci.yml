@@ -16,7 +16,22 @@ jobs:
 
       - name: run shellcheck
         run: shellcheck linux-sysmonitor/health-check.sh
-      
+  
+  test:
+    runs-on: ubuntu-24.04
+    needs: lint
 
+    steps:
+      - name: fetch repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
 
+      - name: execute health-check.sh
+        run: bash linux-sysmonitor/health-check.sh >  health-report-$(date +%Y%m%d-%H%M%S).txt 2>&1
 
+      - name: upload report to artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
+        with:
+          name: health-report
+          path: health-report-*.txt
+          retention-days: 7
+  
