@@ -31,9 +31,7 @@ jobs:
       - name: upload report to artifacts
         uses: actions/artifacts@v4
         with:
-          - name: health-report
-          - path: health-report-*.txt
-          - retention-days: 7
-
-
-
+          name: health-report
+          upload-path: health-report-*.txt
+          retention-days: 7
+  
