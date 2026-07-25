@@ -16,6 +16,10 @@ jobs:
 
       - name: run shellcheck
         run: shellcheck linux-sysmonitor/health-check.sh
+  
+  test:
+    runs-on: ubuntu-24.04
+    needs: lint
       
 
 
