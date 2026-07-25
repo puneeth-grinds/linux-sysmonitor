@@ -1,0 +1,22 @@
+name: CI Pipeline
+
+on: 
+  [ push,pull_request ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: fetch repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
+
+      - name: install shell-check
+        run: sudo apt install shellcheck
+
+      - name: run shellcheck
+        run: shellcheck linux-sysmonitor/health-check.sh
+      
+
+
+
