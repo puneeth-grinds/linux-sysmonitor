@@ -28,6 +28,12 @@ jobs:
       - name: execute health-check.sh
         run: bash linux-sysmonitor/health-check.sh >  health-report-$(date +%Y%m%d-%H%M%S).txt 2>&1
       
+      - name: upload report to artifacts
+        uses: actions/artifacts@v4
+        with:
+          - name: health-report
+          - path: health-report-*.txt
+          - retention-days: 7
 
 
 
