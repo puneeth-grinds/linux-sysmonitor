@@ -28,8 +28,8 @@ jobs:
       - name: execute health-check.sh
         run: bash linux-sysmonitor/health-check.sh >  health-report-$(date +%Y%m%d-%H%M%S).txt 2>&1
 
-      if success():
       - name: upload report to artifacts
+        if: success()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4
         with:
           name: health-report
