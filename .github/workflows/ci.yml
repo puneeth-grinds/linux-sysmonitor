@@ -35,3 +35,6 @@ jobs:
           path: health-report-*.txt
           retention-days: 7
   
+  build:
+    runs-on: ubuntu-24.04
+    needs: [ lint, test ]
