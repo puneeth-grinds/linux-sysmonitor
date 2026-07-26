@@ -58,7 +58,11 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
 
       - name: build image 
-        run: docker build -t ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} .
+        uses: docker/build-push-action@v7
+        with:
+          cache-from: type=gha # try to restore previous cache if exisit
+          cache-to: type=gha # store current docker build cache
+          mode: max
       
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
