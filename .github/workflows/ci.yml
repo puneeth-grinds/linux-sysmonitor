@@ -66,3 +66,6 @@ jobs:
           registry: ${{env.REGISTRY}}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN}} # automatically picked
+      
+      - name: push sha-tagged image
+        run: docker push ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
