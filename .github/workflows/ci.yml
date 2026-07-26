@@ -25,6 +25,14 @@ jobs:
           path: /var/cache/apt/archives
           key: ${{ runner.os }}-apt-${{ hashFiles('**/Dockerfile') }}
           restore-keys: ${{ runner.os }}-apt-
+
+      - name: cache miss
+        if: ${{ steps.apt-cache.outputs.cache-hit != 'true' }}
+        run: echo "cache miss"
+      
+      - name: cache hit
+        if: ${{ steps.apt-cache.outputs.cache-hit == 'true' }}
+        run: echo "cache hit"
       
       - name: install shell-check
         run: sudo apt install shellcheck
@@ -65,14 +73,6 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           cache-from: type=gha # try to restore previous cache if exisit
           cache-to: type=gha,mode=max # store current docker build  and max = save all resuable layer unline min 
-
-      - name: cache miss
-        if: ${{ steps.apt-cache.outputs.cache-hit != 'true' }}
-        run: echo "cache miss"
-      
-      - name: cache hit
-        if: ${{ steps.apt-cache.outputs.cache-hit == 'true' }}
-        run: echo "cache hit"
 
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
