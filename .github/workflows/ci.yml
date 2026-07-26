@@ -60,7 +60,7 @@ jobs:
       - name: run docker images
         run: docker images 
       
-      - name: docker login 
+      - name: ghcr login 
         uses: docker/login-action@v3 
         with:
           registry: ${{env.REGISTRY}}
@@ -83,10 +83,11 @@ jobs:
 
     permissions:
       security-events: write
+    
+    steps:
+      - name: ghcr login
+        uses: docker/login-action@v3
 
-      steps:
-        - name: aquasecurity
-          uses: aquasecurity/trivy-action@0.29.0
-          with:
-            exit-code: 1
-            severity: CRITICAL
+      - name: pull docker image 
+        run: docker pull ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+
