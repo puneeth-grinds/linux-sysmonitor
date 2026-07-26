@@ -75,19 +75,17 @@ jobs:
           registry: ${{env.REGISTRY}}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN}} # automatically picked
-          
+
       - name: build image 
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+          tags:|
+            ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:latest
           cache-from: type=gha # try to restore previous cache if exisit
           cache-to: type=gha,mode=max # store current docker build  and max = save all resuable layer unline min 
-
-      - name: latest-tag
-        if: github.ref == 'refs/heads/main'
-        run: docker tag ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:latest
       
       - name: run docker images
         run: docker images 
