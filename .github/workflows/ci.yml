@@ -102,4 +102,12 @@ jobs:
           image-ref: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           exit-code: 1
           severity: CRITICAL
+      
+      - name: generate trivy sarif report
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: 0
 
