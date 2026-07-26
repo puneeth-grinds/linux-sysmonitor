@@ -104,6 +104,7 @@ jobs:
           severity: CRITICAL
       
       - name: generate trivy sarif report
+        if: always()
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           skip-steup-trivy: true
