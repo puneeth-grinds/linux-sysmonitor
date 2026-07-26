@@ -76,3 +76,4 @@ jobs:
 
       - name: pull docker image
         run: docker pull ${{ REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+        
