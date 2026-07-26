@@ -69,3 +69,7 @@ jobs:
       
       - name: push sha-tagged image
         run: docker push ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+      
+      - name: push latest image
+        if: github.ref == 'refs/heads/main'
+        run: docker push ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
