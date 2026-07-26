@@ -23,7 +23,7 @@ jobs:
         with:
           path: /var/cache/apt/archives
           key: ${{ runner.os }}-apt-${{ hashFiles('**/Dockerfile') }}
-          restore-key: ${{ runner.os }}-apt-
+          restore-keys: ${{ runner.os }}-apt-
       
       - name: install shell-check
         run: sudo apt install shellcheck
