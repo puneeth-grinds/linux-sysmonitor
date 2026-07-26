@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
 
       - name: cache
+        id: cache-docker
         uses: actions/cache@v4
         with:
           path: /var/cache/apt/archives
@@ -64,7 +65,15 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           cache-from: type=gha # try to restore previous cache if exisit
           cache-to: type=gha,mode=max # store current docker build  and max = save all resuable layer unline min 
+
+      - name: cache miss
+        if: {{ steps.cache-docker.outputs.cache-hit != 'true' }}
+        run: echo "cache miss"
       
+      - name: cache hit
+        if: {{ steps.cache-docker.outputs.cache-hit == 'true' }}
+        echo: "cache hit"
+        
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
         run: docker tag ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:latest
