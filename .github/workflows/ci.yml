@@ -51,7 +51,4 @@ jobs:
         run: docker tag ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
       
       - name: run docker images
-        run: docker images
-
-      - name: run docker images
-        run: docker run ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
+        run: docker images 
