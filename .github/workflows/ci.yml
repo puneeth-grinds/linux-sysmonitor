@@ -60,6 +60,8 @@ jobs:
       - name: build image 
         uses: docker/build-push-action@v7
         with:
+          context: .
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           cache-from: type=gha # try to restore previous cache if exisit
           cache-to: type=gha,mode=max # store current docker build  and max = save all resuable layer unline min 
       
