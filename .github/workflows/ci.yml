@@ -61,8 +61,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           cache-from: type=gha # try to restore previous cache if exisit
-          cache-to: type=gha # store current docker build cache
-          mode: max
+          cache-to: type=gha, mode: max # store current docker build cache
       
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
