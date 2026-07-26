@@ -35,3 +35,20 @@ jobs:
           path: health-report-*.txt
           retention-days: 7
   
+  build:
+    runs-on: ubuntu-24.04
+    needs: [ lint, test ]
+
+    steps:
+      - name: fetch repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
+
+      - name: build image 
+        run: docker build -t ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} .
+      
+      - name: latest-tag
+        if: github.ref == 'refs/heads/main'
+        run: docker tag ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
+      
+      - name: run docker images
+        run: docker images 
