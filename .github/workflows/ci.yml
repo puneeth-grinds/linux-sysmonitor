@@ -107,7 +107,7 @@ jobs:
         if: always()
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          skip-steup-trivy: true
+          skip-setup-trivy: true
           image-ref: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
