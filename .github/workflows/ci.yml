@@ -92,7 +92,7 @@ jobs:
         run: docker pull ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
       
       - name: aquasecurity scan 
-        run: aquasecurity/trivy-action@0.29.0
+        uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
           exit-code: 1
