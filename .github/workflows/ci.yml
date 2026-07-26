@@ -49,3 +49,6 @@ jobs:
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
         run: docker tag ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
+
+      - name: run docker images
+        run: docker run ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
