@@ -3,6 +3,13 @@ name: CI Pipeline
 on: 
   [ push,pull_request ]
 
+permissions:
+  contents: read
+  packages: write 
+
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   lint:
     runs-on: ubuntu-24.04
@@ -44,11 +51,29 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.4.0
 
       - name: build image 
-        run: docker build -t ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} .
+        run: docker build -t ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} .
       
       - name: latest-tag
         if: github.ref == 'refs/heads/main'
-        run: docker tag ghcr.io/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ghcr.io/${{ github.repository }}/linux-sysmonitor:latest
+        run: docker tag ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }} ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:latest
       
       - name: run docker images
         run: docker images 
+      
+      - name: docker login 
+        uses: docker/login-action@v3 
+        with:
+          registry: ${{env.REGISTRY}}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN}} # automatically picked
+      
+      - name: push sha-tagged image
+        run: docker push ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+      
+      - name: push latest image
+        if: github.ref == 'refs/heads/main'
+        run: docker push ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:latest
+
+      - name: pull docker image
+        run: docker pull ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
+        
