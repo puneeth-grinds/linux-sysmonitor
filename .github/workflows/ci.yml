@@ -9,7 +9,6 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  SEVERITY: CRITICAL
 
 jobs:
   lint:
@@ -90,4 +89,4 @@ jobs:
           uses: aquasecurity/trivy-action@0.29.0
           with:
             exit-code: 1
-            severity: $ {{env.CRITICAL}}
+            severity: CRITICAL
