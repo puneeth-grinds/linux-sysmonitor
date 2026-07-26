@@ -104,6 +104,7 @@ jobs:
           severity: CRITICAL
       
       - name: generate trivy sarif report
+        continue-on-error: true
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.REGISTRY }}/${{ github.repository }}/linux-sysmonitor:${{ github.sha }}
