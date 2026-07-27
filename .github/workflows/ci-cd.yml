@@ -132,5 +132,21 @@ jobs:
     steps:
       - name: run echo
         run: echo "${{ vars.DEPLOY_URL }}"
+  
+  notify:
+    needs:
+      - lint
+      - test
+      - build
+      - scan
+      - push
+      - deploy-staging
+      - deploy-prod
+    if: failure()
+      run-on: ubuntu:24.04
+    
+    steps:
+      - name: notify
+        run: echo "pipeline failed"
 
 
