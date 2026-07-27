@@ -65,14 +65,12 @@ jobs:
           retention-days: 7
   
   build:
-    runs-on: ubuntu-24.04
     needs: [ lint, test ]
-
-    steps:
-      - name: use workflow-call
-        uses: ./.github/workflows/docker-build-push
-        with:
-          image-tag: ${{ github.sha }}
+    uses: ./.github/workflows/docker-build-push.yml 
+    with:
+      image-tag: ${{ github.sha }}
+      push: true
+    secrets: inherit
   
   scan:
     runs-on: ubuntu-24.04
