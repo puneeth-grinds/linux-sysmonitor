@@ -3,5 +3,6 @@ name: docker build and push
 on: 
   workflow_call:
     inputs:
-      image-tag: required
-      
+      image-tag: 
+        required: true 
+
