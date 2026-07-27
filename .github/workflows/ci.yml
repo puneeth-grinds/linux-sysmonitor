@@ -115,3 +115,10 @@ jobs:
         with:
           sarif_file: trivy-results.sarif
           category: trivy-scan-analysis
+
+  deploy-staging:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment: staging
+    
+
