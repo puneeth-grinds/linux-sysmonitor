@@ -139,7 +139,6 @@ jobs:
       - test
       - build
       - scan
-      - push
       - deploy-staging
       - deploy-prod
     if: failure()
