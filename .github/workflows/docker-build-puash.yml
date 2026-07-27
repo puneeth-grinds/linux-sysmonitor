@@ -4,5 +4,11 @@ on:
   workflow_call:
     inputs:
       image-tag: 
-        required: true 
+        required: true
+        type: string 
+
+      push:
+        default: false
+        type: boolean 
+      
 
