@@ -117,8 +117,12 @@ jobs:
           category: trivy-scan-analysis
 
   deploy-staging:
-    needs: build
+    needs: scan
     runs-on: ubuntu-24.04
     environment: staging
+
+    steps:
+      - name: run echo
+        run: echo $"{{ vars.DEPLOY_URL }}"
     
 
