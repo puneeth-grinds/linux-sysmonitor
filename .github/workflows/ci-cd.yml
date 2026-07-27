@@ -143,7 +143,7 @@ jobs:
       - deploy-staging
       - deploy-prod
     if: failure()
-      run-on: ubuntu:24.04
+    run-on: ubuntu:24.04
     
     steps:
       - name: notify
