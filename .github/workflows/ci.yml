@@ -70,7 +70,7 @@ jobs:
     with:
       image-tag: ${{ github.sha }}
       push: true
-    secrets: inherit
+    secrets: ${{ secrets.REGISTRY_TOKEN }}
   
   scan:
     runs-on: ubuntu-24.04
