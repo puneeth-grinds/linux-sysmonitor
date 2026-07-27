@@ -42,6 +42,10 @@ jobs:
   
   test:
     runs-on: {{ matrix.os }}
+    stratergy:
+      matrix:
+        os: [ ubuntu-20.04, ubuntu-22.04 ]
+
     needs: lint
 
     steps:
