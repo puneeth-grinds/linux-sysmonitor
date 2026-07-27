@@ -41,10 +41,11 @@ jobs:
         run: shellcheck linux-sysmonitor/health-check.sh
   
   test:
-    runs-on: {{ matrix.os }}
-    stratergy:
+    strategy:
       matrix:
         os: [ ubuntu-20.04, ubuntu-22.04 ]
+    
+    runs-on: ${{ matrix.os }}
 
     needs: lint
 
