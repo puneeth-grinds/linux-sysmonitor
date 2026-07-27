@@ -125,5 +125,14 @@ jobs:
     steps:
       - name: run echo
         run: echo "${{ vars.DEPLOY_URL }}"
-    
+
+  deploy-prod:
+    needs: deploy-staging
+    runs-on: ubuntu-24.04
+    environment: production
+
+    steps:
+      - name: run echo
+        run: echo "${{ vars.DEPLOY_URL }}"
+
 
