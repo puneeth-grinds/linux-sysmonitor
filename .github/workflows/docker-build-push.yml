@@ -11,4 +11,8 @@ on:
         default: false
         type: boolean 
       
+    secrets:
+      REGISTRY_TOKEN:
+        required: true 
+      
 
