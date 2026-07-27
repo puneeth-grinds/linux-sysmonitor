@@ -66,7 +66,7 @@ jobs:
   
   build:
     needs: [ lint, test ]
-    uses: ./.github/workflows/docker-build-push.yml 
+    uses: .github/workflows/docker-build-push.yml
     with:
       image-tag: ${{ github.sha }}
       push: true
@@ -123,6 +123,6 @@ jobs:
 
     steps:
       - name: run echo
-        run: echo $"{{ vars.DEPLOY_URL }}"
+        run: echo "${{ vars.DEPLOY_URL }}"
     
 
